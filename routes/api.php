@@ -19,5 +19,5 @@ Route::prefix('auth')->group(function(){
 
 Route::prefix('admin')->group(function(){
     Route::get('/submenu',[App\Http\Controllers\Auth\AuthController::class, 'userData'])->middleware(['jwttoken','jwt.auth']);
-    Route::get('/usermenusidebar',[App\Http\Controllers\Auth\AuthController::class,'menu']);
+    Route::get('/usermenu',[App\Http\Controllers\Auth\AuthController::class,'menu']);
 });

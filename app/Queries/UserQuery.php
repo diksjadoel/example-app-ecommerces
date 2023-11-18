@@ -49,4 +49,8 @@ trait UserQuery
             'success' => true,
         ], 200);
     }
+    public function userMenus() {
+        $userMenu=UserMenu::all();
+        return response()->jsom($userMenu);
+    }
 }

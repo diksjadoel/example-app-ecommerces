@@ -28,4 +28,7 @@ class Userservice {
     public function userLogout(){
         return $this->logout();
     }
+    public function getUserMenu() {
+       return $this->userMenus();
+    }
 }
