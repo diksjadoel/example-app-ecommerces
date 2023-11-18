@@ -51,6 +51,6 @@ trait UserQuery
     }
     public function userMenus() {
         $userMenu=UserMenu::all();
-        return response()->jsom($userMenu);
+        return response()->json($userMenu);
     }
 }
