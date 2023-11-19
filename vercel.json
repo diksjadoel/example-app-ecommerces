@@ -3,19 +3,10 @@
     "functions": {
         "api/index.php": { "runtime": "vercel-php@0.6.0" }
     },
-    "builds": [
-        {
-          "src": "public/index.php",
-          "use": "@vercel/php",
-          "config": {
-            "outputDirectory": "public"
-          }
-        }
-      ],
     "routes": [
         {
             "src": "/(css|js|images)/(.*)",
-            "dest": "public/$1/$2"
+            "dest": "public"
         },
         {
             "src": "/(.*)",
