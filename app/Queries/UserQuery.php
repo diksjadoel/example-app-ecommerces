@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\UserMenu;
 trait UserQuery
 {
     public function getUserDataToken($request) {
