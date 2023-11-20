@@ -17,7 +17,7 @@
         "APP_NAME": "Laravel Vercel",
         "APP_ENV": "production",
         "APP_DEBUG": "false",
-        "APP_URL": " https://ecommerce-vercel-msbuxpiki-diksjadoel.vercel.app/",
+        "APP_URL": "https://vercel-example-app-ecommerce-i3247pj0m-diksjadoel.vercel.app",
         "APP_KEY":"base64:7nmHBVf/qvsPzExKxGhzTXODtyQNrD1iks4jzBgEBZg=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
