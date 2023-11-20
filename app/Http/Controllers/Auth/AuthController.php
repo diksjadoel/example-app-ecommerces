@@ -35,6 +35,6 @@ class AuthController extends Controller
         return $this->userService->userLogout();
     }
     public function menu() {
-        return response()->json('oke');
+        return $this->userService->getUserMenu();
     }
 }
