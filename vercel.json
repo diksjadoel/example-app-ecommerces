@@ -10,8 +10,13 @@
         },
         {
             "src": "/(.*)",
-            "dest": "api/index.php"
+            "dest": "api/index.php",
+            "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+            "headers": {
+              "Access-Control-Allow-Origin": "*"
+            }
         }
+
     ],
     "env": {
         "APP_NAME": "Laravel Vercel",
