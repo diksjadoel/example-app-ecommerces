@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::prefix('auth')->group(function(){
-    Route::post('/login', [App\Http\Controllers\Auth\AuthController::class, 'userLoggedIn']);
-    Route::get('/refresh',[App\Http\Controllers\Auth\AuthController::class,'refreshToken'])->middleware(['auth:api_admin']);
+    Route::post('/login', [App\Http\Controllers\Auth\AuthController::class, 'userLoggedIn'])->middleware('cors');
+    Route::get('/refresh',[App\Http\Controllers\Auth\AuthController::class,'refreshToken'])->middleware(['auth:api_admin','cors']);
 });
 
 Route::prefix('admin')->group(function(){
-    Route::get('/submenu',[App\Http\Controllers\Auth\AuthController::class, 'userData'])->middleware(['jwttoken','jwt.auth']);
-    Route::get('/usermenu',[App\Http\Controllers\Auth\AuthController::class,'menu']);
+    Route::get('/submenu',[App\Http\Controllers\Auth\AuthController::class, 'userData'])->middleware(['jwttoken','jwt.auth','cors']);
+    Route::get('/usermenu',[App\Http\Controllers\Auth\AuthController::class,'menu'])->middleware(['cors']);
 });
