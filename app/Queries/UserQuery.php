@@ -6,6 +6,7 @@ use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\UserMenu;
+use Laravel\Socialite\Facades\Socialite;
 trait UserQuery
 {
     public function getUserDataToken($request) {
@@ -53,5 +54,24 @@ trait UserQuery
     public function userMenus() {
         $userMenu=UserMenu::all();
         return response()->json($userMenu);
+    }
+    public function signInWithOAuth() {
+        return Socialite::driver('google')->stateless()->redirect();
+    }
+    public function authCallback() {
+        try {
+            $user =  Socialite::driver('google')->stateless()->user();
+            $findUser = User::where('email',$user->email)->first();
+            if(findUser) {
+                return response()->json([
+                    'messages' =>'available',
+                    'data'=>$findUser
+                ],200);
+            } else {
+                return response()->json('notfound');
+            }
+        }catch(error) {
+            return response()->json(['messages'=>error]);
+        }
     }
 }

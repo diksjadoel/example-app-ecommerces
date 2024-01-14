@@ -23,12 +23,18 @@ class Userservice {
             return $this->getUserDataMenuAndSubMenu();
     }
     public function userRefreshToken( $token) {
-        $data=$this->getUserNewRefreshToken($token);
+       $this->getUserNewRefreshToken($token);
     }
     public function userLogout(){
         return $this->logout();
     }
     public function getUserMenu() {
        return $this->userMenus();
+    }
+    public function signInByGoogles() {
+       return $this->signInWithOAuth();
+    }
+    public function googleCallback() {
+        return $this->authCallback();
     }
 }
