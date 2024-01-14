@@ -37,4 +37,10 @@ class AuthController extends Controller
     public function menu() {
         return $this->userService->getUserMenu();
     }
+    public function signInByGoogle() {
+        return $this->userService->signInByGoogles();
+    }
+    public function googleCallback() {
+        return $this->userService->googleCallback();
+    }
 }

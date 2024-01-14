@@ -29,5 +29,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
+    'google' => [
+        'client_id' => '9193891811-1kfmvb36dg75ijjtvd8ms7ddn9rsu4d9.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'https://example-9t5fbxt47-diksjadoel.vercel.app/api/api/resources/google/callback',
+    ],
 ];
