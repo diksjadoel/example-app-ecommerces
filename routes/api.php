@@ -17,6 +17,7 @@ Route::prefix('auth')->group(function(){
     Route::get('/refresh',[App\Http\Controllers\Auth\AuthController::class,'refreshToken'])->middleware(['auth:api_admin']);
     Route::get('/google', [App\Http\Controllers\Auth\AuthController::class,'signInByGoogle']);
     Route::get('/google/callback',[App\Http\Controllers\Auth\AuthController::class,'googleCallback']);
+    Route::post('/change/code',[App\Http\Controllers\Auth\AuthController::class,'googleAuthentication']);
 });
 
 Route::prefix('admin')->group(function(){

@@ -43,4 +43,8 @@ class AuthController extends Controller
     public function googleCallback() {
         return $this->userService->googleCallback();
     }
+    public function googleAuthentication(Requst $request) {
+        // ini menerima kode otorisasi
+        return $this->googleAuth($request->authOtorizationsCode);
+    }
 }
