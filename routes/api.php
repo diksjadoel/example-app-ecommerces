@@ -19,7 +19,6 @@ Route::prefix('auth')->group(function(){
     Route::get('/google/callback',[App\Http\Controllers\Auth\AuthController::class,'googleCallback']);
     Route::post('/change/code',[App\Http\Controllers\Auth\AuthController::class,'googleAuthentication']);
 });
-
 Route::prefix('admin')->group(function(){
     Route::get('/submenu',[App\Http\Controllers\Auth\AuthController::class, 'userData'])->middleware(['jwttoken','jwt.auth']);
     Route::get('/usermenu',[App\Http\Controllers\Auth\AuthController::class,'menu']);
