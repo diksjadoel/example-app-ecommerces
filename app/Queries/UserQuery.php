@@ -7,8 +7,12 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\UserMenu;
 use Laravel\Socialite\Facades\Socialite;
+use GuzzleHttp\Client;
+
 trait UserQuery
 {
+
+    private $uri = 'https://oauth2.googleapis.com/token';
     public function getUserDataToken($request) {
              $credentials = $request;
              if(!$token = auth()->guard('api_admin')->attempt($credentials)) {
@@ -61,17 +65,27 @@ trait UserQuery
     public function authCallback() {
         try {
             $user =  Socialite::driver('google')->stateless()->user();
-            $findUser = User::where('email',$user->email)->first();
-            if(findUser) {
-                return response()->json([
-                    'messages' =>'available',
-                    'data'=>$findUser
-                ],200);
-            } else {
-                return response()->json('notfound');
-            }
         }catch(error) {
             return response()->json(['messages'=>error]);
         }
+    }
+    public function exchangeAuthorizationCodeWithAccessKey($authOtorizationsCode) {
+        $validator = Validator::make($request, [
+            'authOtorizationsCode'    => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+        $client = new Client();
+        $changeCodeToAccessKey = $client->post($this->uri, [
+            'form_params' => [
+                'grant_type'    => 'authorization_code',
+                'code'          => $authOtorizationsCode,
+                'redirect_uri'  => 'https://example-9t5fbxt47-diksjadoel.vercel.app/api/api/resources/google/callback',
+                'client_id'     => '9193891811-1kfmvb36dg75ijjtvd8ms7ddn9rsu4d9.apps.googleusercontent.com',
+                'client_secret' => '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',
+            ],
+        ]);
+        return response()->json($changeCodeToAccessKey);
     }
 }

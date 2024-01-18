@@ -37,4 +37,7 @@ class Userservice {
     public function googleCallback() {
         return $this->authCallback();
     }
+    public function googleAuth($authOtorizationsCode) {
+        return $this->exchangeAuthorizationCodeWithAccessKey($authOtorizationsCode);
+    }
 }
