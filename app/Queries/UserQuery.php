@@ -60,14 +60,14 @@ trait UserQuery
         return response()->json($userMenu);
     }
     public function signInWithOAuth() {
-        return Socialite::driver('google')->stateless()->redirect();
-    }
-    public function authCallback() {
         try {
             $user =  Socialite::driver('google')->stateless()->user();
         }catch(error) {
             return response()->json(['messages'=>error]);
         }
+    }
+    public function authCallback() {
+        return Socialite::driver('google')->stateless()->redirect();
     }
     public function exchangeAuthorizationCodeWithAccessKey($authOtorizationsCode) {
         $validator = Validator::make($request, [
