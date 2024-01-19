@@ -76,16 +76,17 @@ trait UserQuery
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
-        $client = new Client();
-        $changeCodeToAccessKey = $client->post($this->uri, [
-            'form_params' => [
-                'grant_type'    => 'authorization_code',
-                'code'          => $authOtorizationsCode,
-                'redirect_uri'  => 'https://example-9t5fbxt47-diksjadoel.vercel.app/api/api/resources/google/callback',
-                'client_id'     => '9193891811-1kfmvb36dg75ijjtvd8ms7ddn9rsu4d9.apps.googleusercontent.com',
-                'client_secret' => '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',
-            ],
+          $response = Http::withHeaders([
+            'grant_type'    => 'authorization_code',
+            'code'          => $authOtorizationsCode,
+            'redirect_uri'  => 'https://example-9t5fbxt47-diksjadoel.vercel.app/api/api/resources/google/callback',
+            'client_id'     => '9193891811-1kfmvb36dg75ijjtvd8ms7ddn9rsu4d9.apps.googleusercontent.com',
+            'client_secret' => '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',
+        ])->post($this->uri, [
+            'code'=>$authOtorizationsCode
         ]);
-        return response()->json($changeCodeToAccessKey);
+        return response()->json([
+            $response
+        ]);
     }
 }
