@@ -59,36 +59,4 @@ trait UserQuery
         $userMenu=UserMenu::all();
         return response()->json($userMenu);
     }
-    public function signInWithOAuth() {
-        try {
-            $user =  Socialite::driver('google')->stateless()->user();
-        }catch(error) {
-            return response()->json(['messages'=>error]);
-        }
-    }
-    public function authCallback() {
-        return Socialite::driver('google')->stateless()->redirectUrl('/api/api/resources/auth/google/callback')
-            ->setScopes(['openid', 'profile', 'email'])
-        ->redirect();
-    }
-    public function exchangeAuthorizationCodeWithAccessKey($authOtorizationsCode) {
-        $validator = Validator::make($request, [
-            'authOtorizationsCode'    => 'required',
-        ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-          $response = Http::withHeaders([
-            'grant_type'    => 'authorization_code',
-            'code'          => $authOtorizationsCode,
-            'redirect_uri'  => 'https://example-9t5fbxt47-diksjadoel.vercel.app/api/api/resources/google/callback',
-            'client_id'     => '9193891811-1kfmvb36dg75ijjtvd8ms7ddn9rsu4d9.apps.googleusercontent.com',
-            'client_secret' => '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',
-        ])->post($this->uri, [
-            'code'=>$authOtorizationsCode
-        ]);
-        return response()->json([
-            $response
-        ]);
-    }
 }
