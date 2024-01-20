@@ -31,13 +31,5 @@ class Userservice {
     public function getUserMenu() {
        return $this->userMenus();
     }
-    public function signInByGoogles() {
-       return $this->signInWithOAuth();
-    }
-    public function googleCallback() {
-        return $this->authCallback();
-    }
-    public function googleAuth($authOtorizationsCode) {
-        return $this->exchangeAuthorizationCodeWithAccessKey($authOtorizationsCode);
-    }
+
 }
