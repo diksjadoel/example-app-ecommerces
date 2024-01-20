@@ -67,8 +67,9 @@ trait UserQuery
         }
     }
     public function authCallback() {
-        return Socialite::driver('google')->stateless()->redirectUrl('https://example-9t5fbxt47-diksjadoel.vercel.app/api/api/resources/auth/google/callback')->redirect();
-
+        return Socialite::driver('google')->stateless()->redirectUrl('https://example-9t5fbxt47-diksjadoel.vercel.app/api/api/resources/auth/google/callback')
+            ->setScopes(['openid', 'profile', 'email'])
+        ->redirect();
     }
     public function exchangeAuthorizationCodeWithAccessKey($authOtorizationsCode) {
         $validator = Validator::make($request, [
